@@ -1,0 +1,5 @@
+.warning-text {
+    position: absolute;
+    margin: .4rem 1rem;
+    color: red;
+}
