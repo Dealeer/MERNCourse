@@ -1,3 +1,11 @@
+.new-item{
+    display: flex;
+    flex-direction: column;
+}
+.new-item div{
+    margin: 5px;
+}
+
 .warning-text {
     position: absolute;
     margin: .4rem 1rem;

@@ -6,11 +6,11 @@ import NewItem from './components/NewItem/NewItem';
 
 function App() {
   const [listItems, setListItems] = useState([
-    {id: 'li1', text: 'Finish the Course'},
-    {id: 'li2', text: 'Learn all about the Course Main Topics'},
-    {id: 'li3', text: 'Help other students in the Course Q&A'}
+    {id: 1, title: 'Finish the Course', description: 'Certificados são legais. Complete essa tarefa e pegue o seu!', completed: false},
+    {id: 2, title: 'Learn all about the Course Main Topics', description: 'Se não aprender, você perdeu seu tempo...', completed: false},
+    {id: 3, title: 'Help other students in the Course Q&A', description: 'Ajudar os coleguinhas é importante e pode nos trazer muito aprendizado. Entre no fórum e faça acontecer!!', completed: false}
   ]);
-
+  
   const addNewItemHandler = (newItem) => {
     // setListItems(listItems.concat(newItem));
     
@@ -19,20 +19,25 @@ function App() {
     // });
     
     setListItems(prevListItems => prevListItems.concat(newItem));
-    console.log(listItems);
-  }
+  };
 
-  const removeItemHandler = (itemsToDelete) => {
-    debugger
-    itemsToDelete.forEach(itemToDelete => {
-      let arrayIndex = parseInt(itemToDelete.substr(2, 3));
-      setListItems(prevListItems => prevListItems.splice(arrayIndex, arrayIndex));
+  const completeItemHandler = (itemToComplete) => {
+    let updatedTask = listItems.map(item => {
+      if (item.id === itemToComplete){
+        return ({ ...item, completed: !item.completed })
+      }
+      return item;
     });
+    
+    setListItems(prevListItems => {
+      prevListItems = updatedTask;
+      return prevListItems;
+    });
+  };
 
-    if(listItems == null){
-      setListItems({id: 'li0', text: 'Your list is empty!'});
-    }
-  }
+  const removeItemHandler = (itemToDelete) => {
+    setListItems(prevListItems => prevListItems.filter((listItem) => listItem.id !== itemToDelete));
+  };
   
   return (
     <div className="App">
@@ -42,8 +47,8 @@ function App() {
         </h1>
       </header>
       <h2>To-do List</h2>
-      <NewItem onAddItem={addNewItemHandler} listLength={listItems.length} />
-      <TodoList items={listItems} onDeleteItem={removeItemHandler} />
+      <NewItem onAddItem={addNewItemHandler} nextObjId={parseInt(listItems[listItems.length-1].id)} />
+      <TodoList items={listItems} onDeleteItem={removeItemHandler} onCompleteItem={completeItemHandler} />
     </div>
   );
 }

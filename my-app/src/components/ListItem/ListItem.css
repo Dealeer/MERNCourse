@@ -3,3 +3,17 @@
     border: 1px solid white;
     padding: 1rem;
 }
+
+.list-item--completed{
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: line-through;
+    border-color: green;
+}
+.list-item--completed button:not(:last-child){
+    filter: opacity(0.4);
+}
+
+.list-item-description{
+    font-size: .8em;
+    margin-top: 5px;
+}

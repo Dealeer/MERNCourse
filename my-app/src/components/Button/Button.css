@@ -5,3 +5,17 @@
     border-radius: 18px;
     padding: 7px;
 }
+
+.button--red{
+    background-color: red;
+}
+.button--green{
+    background-color: green;
+}
+.button--orange{
+    background-color: rgb(218, 141, 0);
+}
+
+.button--rotate svg{
+    transform: rotate(180deg);
+}

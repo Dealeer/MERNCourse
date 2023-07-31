@@ -1,9 +1,8 @@
 import './Button.css';
 
 const Button = props => {
-    const liId = props.btnProps.liId;
     return (
-        <button className='button' type={`${props.btnProps.type}`}>{props.btnProps.text}</button>
+        <button className={'button '+props.modifier} type={props.type} onClick={props.onClickEvt}>{props.text}</button>
     );
 };
 
