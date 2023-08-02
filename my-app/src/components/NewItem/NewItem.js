@@ -39,12 +39,12 @@ const NewItem = props => {
     return (
         <form className="new-item" onSubmit={addItemHandler}>
             <div>
-                <label for="title">Título: </label>
-                <input type="text" value={enteredTitle} onChange={titleChangeHandler} />
+                <label htmlFor="title">Título: </label>
+                <input type="text" id="title" value={enteredTitle} onChange={titleChangeHandler} />
             </div>
             <div>
-                <label for="description">Descrição: </label>
-                <input type="text" value={enteredDescription} onChange={descriptionChangeHandler} />
+                <label htmlFor="description">Descrição: </label>
+                <textarea id="description" value={enteredDescription} onChange={descriptionChangeHandler} />
             </div>
             <div>
                 <Button type='submit' text='Add Item' />

@@ -1,13 +1,23 @@
 .new-item{
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+    max-width: 240px;
 }
 .new-item div{
     margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.new-item label{
+    margin-right: .3rem;
 }
 
 .warning-text {
     position: absolute;
-    margin: .4rem 1rem;
     color: red;
+    margin-left: -210px;
+    font-size: 12px;
 }
