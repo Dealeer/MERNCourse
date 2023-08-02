@@ -38,17 +38,32 @@ function App() {
   const removeItemHandler = (itemToDelete) => {
     setListItems(prevListItems => prevListItems.filter((listItem) => listItem.id !== itemToDelete));
   };
+
+  const updateItemHandler = (itemToUpdate, newValues) => {
+    let updatedTask = listItems.map(item => {
+      if (item.id === itemToUpdate){
+        return ({ ...item,  title: newValues.newTitle, description: newValues.newDescription})
+      }
+      return item;
+    });
+
+    setListItems(prevListItems => {
+      prevListItems = updatedTask;
+      return prevListItems;
+    });
+  };
   
   return (
     <div className="App">
       <header className="App-header">
         <h1>
-          App brabo
+          Lista de Tarefas
         </h1>
       </header>
-      <h2>To-do List</h2>
+      <h2>Adicionar tarefa</h2>
       <NewItem onAddItem={addNewItemHandler} nextObjId={parseInt(listItems[listItems.length-1].id)} />
-      <TodoList items={listItems} onDeleteItem={removeItemHandler} onCompleteItem={completeItemHandler} />
+      <h2>Sua lista:</h2>
+      <TodoList items={listItems} onDeleteItem={removeItemHandler} onCompleteItem={completeItemHandler} onUpdateItem={updateItemHandler} />
     </div>
   );
 }
