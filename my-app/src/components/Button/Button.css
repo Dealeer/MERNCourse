@@ -1,4 +1,6 @@
 .button{
+    min-width: 26px;
+    min-height: 26px;
     margin-left: 1rem;
     background-color: blue;
     color: white;
