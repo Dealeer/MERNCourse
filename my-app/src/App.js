@@ -52,6 +52,15 @@ function App() {
       return prevListItems;
     });
   };
+
+  const reorderItemHandler = ({source, destination}) => {
+    const reorderedList = [...listItems];
+
+    const [removedItem] = reorderedList.splice(source.index, 1);
+    reorderedList.splice(destination.index, 0, removedItem);
+
+    return setListItems(reorderedList);
+  };
   
   return (
     <div className="App">
@@ -63,7 +72,7 @@ function App() {
       <h2>Adicionar tarefa</h2>
       <NewItem onAddItem={addNewItemHandler} nextObjId={parseInt(listItems[listItems.length-1].id)} />
       <h2>Sua lista:</h2>
-      <TodoList items={listItems} onDeleteItem={removeItemHandler} onCompleteItem={completeItemHandler} onUpdateItem={updateItemHandler} />
+      <TodoList items={listItems} onDeleteItem={removeItemHandler} onCompleteItem={completeItemHandler} onUpdateItem={updateItemHandler} onReorderItem={reorderItemHandler} />
     </div>
   );
 }
