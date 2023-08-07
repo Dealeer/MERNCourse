@@ -29,7 +29,7 @@ const TodoList = props => {
 
     return (
         <DragDropContext onDragEnd={dragDropHandler}>
-            <Droppable droppableId="droppable-todo-list">
+            <Droppable droppableId="undone-todo-list">
                 {(provided) => (
                     <ul className='todo-list' {...provided.droppableProps} ref={provided.innerRef}>
                         {props.items.map((item, index) => {
@@ -45,16 +45,24 @@ const TodoList = props => {
                                 );
                             }
                         })}
+                        {provided.placeholder}
+                    </ul>
+                )}
+            </Droppable>
+            <p>Tarefas concluídas:</p>
+            <Droppable droppableId="done-todo-list">
+                {(provided) => (
+                    <ul className='todo-list' {...provided.droppableProps} ref={provided.innerRef}>
                         {props.items.map((item, index) => {
                             if(item.completed === true){
                                 return (
-                                    <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
-                                        {(provided) => (
+                                    // <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
+                                    //     {(provided) => (
                                             <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                                                 <ListItem title={item.title} description={item.description} liKey={item.id} completion={item.completed} onCompleteClick={completeItemHandler} onDeleteClick={deleteItemHandler} onUpdateClick={updateItemHandler} />
                                             </div>
-                                        )}
-                                    </Draggable>
+                                    //     )}
+                                    // </Draggable>
                                 );
                             }
                         })}
@@ -63,7 +71,7 @@ const TodoList = props => {
                 )}
             </Droppable>
         </DragDropContext>
-    )
+        )
 };
 
 export default TodoList;
