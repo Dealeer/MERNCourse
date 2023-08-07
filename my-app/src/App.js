@@ -22,15 +22,24 @@ function App() {
   };
 
   const completeItemHandler = (itemToComplete) => {
-    let updatedTask = listItems.map(item => {
+    let currentIndex;
+
+    let updatedTask = listItems.map((item, index) => {
       if (item.id === itemToComplete){
+        currentIndex = index;
         return ({ ...item, completed: !item.completed })
       }
       return item;
     });
     
+    let reorderedList = [...updatedTask];
+
+    let [removedItem] = reorderedList.splice(currentIndex, 1);
+    reorderedList.splice(listItems.length-1, 0, removedItem);
+    console.log(reorderedList);
+
     setListItems(prevListItems => {
-      prevListItems = updatedTask;
+      prevListItems = reorderedList;
       return prevListItems;
     });
   };
@@ -54,12 +63,15 @@ function App() {
   };
 
   const reorderItemHandler = ({source, destination}) => {
-    const reorderedList = [...listItems];
+    let reorderedList = [...listItems];
 
-    const [removedItem] = reorderedList.splice(source.index, 1);
+    let [removedItem] = reorderedList.splice(source.index, 1);
     reorderedList.splice(destination.index, 0, removedItem);
 
-    return setListItems(reorderedList);
+    setListItems(prevListItems => {
+      prevListItems = reorderedList;
+      return prevListItems;
+    });
   };
   
   return (

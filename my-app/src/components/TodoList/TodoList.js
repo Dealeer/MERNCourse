@@ -50,15 +50,19 @@ const TodoList = props => {
                 )}
             </Droppable>
             <p>Tarefas concluídas:</p>
-            <Droppable droppableId="done-todo-list">
-                {(provided) => (
-                    <ul className='todo-list' {...provided.droppableProps} ref={provided.innerRef}>
+            {/* <Droppable droppableId="done-todo-list"> */}
+                {/* {(provided) => ( */}
+                    <ul className='todo-list'
+                        // {...provided.droppableProps} ref={provided.innerRef}
+                    >
                         {props.items.map((item, index) => {
                             if(item.completed === true){
                                 return (
                                     // <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
                                     //     {(provided) => (
-                                            <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                            <div 
+                                                // {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}
+                                            >
                                                 <ListItem title={item.title} description={item.description} liKey={item.id} completion={item.completed} onCompleteClick={completeItemHandler} onDeleteClick={deleteItemHandler} onUpdateClick={updateItemHandler} />
                                             </div>
                                     //     )}
@@ -66,10 +70,10 @@ const TodoList = props => {
                                 );
                             }
                         })}
-                        {provided.placeholder}
+                        {/* {provided.placeholder} */}
                     </ul>
-                )}
-            </Droppable>
+                {/* )} */}
+            {/* </Droppable> */}
         </DragDropContext>
         )
 };
